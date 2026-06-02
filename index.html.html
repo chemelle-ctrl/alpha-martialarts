@@ -1,0 +1,1091 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alpha Martial Arts Gym - GSI</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #0d1f3c;
+    --navy-light: #132847;
+    --navy-card: #0f2044;
+    --gold: #c9a227;
+    --gold-light: #e8c14a;
+    --gold-dim: #7a6018;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --white: #ffffff;
+    --off-white: #e8eaf0;
+    --gray: #a0aec0;
+    --gray-light: #d0d9e8;
+    --text-body: #b8c8d8;
+    --border: rgba(201,162,39,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--navy);
+    color: var(--off-white);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+  h5, h6, .label { font-family: 'Rajdhani', sans-serif; }
+
+  /* == NAV == */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(10,22,40,0.97);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 64px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    color: var(--gold); letter-spacing: 3px; text-decoration: none;
+  }
+  .nav-logo .alpha { font-size: 1.7rem; }
+  .nav-logo .sub { font-size: 0.65rem; color: var(--gray); letter-spacing: 4px; font-family: 'Rajdhani', sans-serif; display: block; line-height: 1; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray-light); text-decoration: none;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600;
+    font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 8px 20px; border-radius: 3px;
+    font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;
+    font-size: 1rem; cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold); border-radius: 2px; display: block; transition: all 0.3s; }
+
+  /* == HERO == */
+  #hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(10,22,40,0.85) 40%, rgba(10,22,40,0.6) 100%),
+      repeating-linear-gradient(45deg, rgba(201,162,39,0.03) 0px, rgba(201,162,39,0.03) 1px, transparent 1px, transparent 60px),
+      linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 2rem 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-emblem {
+    width: 120px; height: 120px; margin: 0 auto 1.5rem;
+    border: 3px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(201,162,39,0.15), inset 0 0 40px rgba(10,22,40,0.8);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(201,162,39,0.15), inset 0 0 20px rgba(10,22,40,0.8); }
+    50% { box-shadow: 0 0 50px rgba(201,162,39,0.35), inset 0 0 20px rgba(10,22,40,0.8); }
+  }
+  .hero-emblem {
+    width: 120px; height: 120px; margin: 0 auto 1.5rem;
+    border: 3px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(201,162,39,0.15), inset 0 0 40px rgba(10,22,40,0.8);
+    animation: pulse 3s ease-in-out infinite;
+    overflow: hidden;
+  }
+  .hero-emblem svg, .hero-emblem img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .hero-badge {
+    background: var(--red); color: white;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 4px 16px; border-radius: 2px; margin-bottom: 1rem; display: inline-block;
+  }
+  .hero-title { font-size: clamp(3rem, 8vw, 7rem); color: var(--white); line-height: 0.9; }
+  .hero-title .alpha { color: var(--gold); display: block; }
+  .hero-sub {
+    font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 500;
+    color: var(--gray); letter-spacing: 4px; text-transform: uppercase; margin: 0.75rem 0 0.5rem;
+  }
+  .hero-gsi {
+    font-family: 'Rajdhani', sans-serif; color: var(--gold-dim);
+    font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem;
+  }
+  .hero-divider {
+    width: 80px; height: 2px; background: var(--gold); margin: 1.5rem auto;
+    position: relative;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: ''; position: absolute; top: -3px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+  }
+  .hero-divider::before { left: -12px; }
+  .hero-divider::after { right: -12px; }
+  .hero-tagline {
+    font-size: 1rem; color: var(--text-body); max-width: 500px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1.1rem;
+    padding: 12px 32px; border: none; border-radius: 3px; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--gold);
+    border: 1.5px solid var(--gold);
+    font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1.1rem;
+    padding: 12px 32px; border-radius: 3px; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(201,162,39,0.1); transform: translateY(-2px); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: var(--gold-dim); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+  .scroll-hint::after { content: '▼'; font-size: 0.65rem; }
+
+  /* == SECTION BASE == */
+  section { padding: 80px 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700;
+    color: var(--red); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .section-title { font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--white); line-height: 1; }
+  .section-title span { color: var(--gold); }
+  .section-divider {
+    width: 50px; height: 3px; background: var(--gold); margin: 1rem 0 2rem;
+    position: relative;
+  }
+  .section-divider::after { content: ''; position: absolute; right: -10px; top: -2px; width: 8px; height: 8px; background: var(--gold); clip-path: polygon(0 50%, 100% 0, 100% 100%); }
+  .alt-bg { background: var(--navy-mid); }
+
+  /* == ABOUT == */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .about-text p { color: var(--text-body); line-height: 1.9; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .stat-box {
+    background: var(--navy-light); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.2rem; text-align: center;
+  }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--gold); display: block; }
+  .stat-label { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; }
+  .about-visual {
+    background: var(--navy-light); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .about-visual-title { font-family: 'Bebas Neue', sans-serif; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; text-align: center; margin-bottom: 0.5rem; }
+  .discipline-pill {
+    display: flex; justify-content: center; align-items: center;
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 40px; padding: 10px 16px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.95rem;
+    color: var(--off-white); letter-spacing: 1px; text-align: center;
+    transition: border-color 0.2s;
+  }
+  .discipline-pill:hover { border-color: var(--gold); }
+
+  /* == SCHEDULE == */
+  .schedule-grid { display: grid; gap: 1rem; }
+  .schedule-day { font-family: 'Bebas Neue', sans-serif; color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; margin: 1.5rem 0 0.5rem; }
+  .schedule-row {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1rem 1.5rem;
+    display: grid; grid-template-columns: 180px 1fr auto;
+    align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .schedule-row:hover { border-color: var(--gold-dim); }
+  .sched-time {
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.9rem;
+    color: var(--gold); letter-spacing: 1px;
+  }
+  .sched-class {
+    font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600;
+    color: var(--off-white);
+  }
+  .sched-tag {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .tag-adult { background: rgba(192,57,43,0.2); color: var(--red-bright); border: 1px solid rgba(192,57,43,0.3); }
+  .tag-kids { background: rgba(46,204,113,0.1); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+  .tag-comp { background: rgba(201,162,39,0.15); color: var(--gold); border: 1px solid var(--border); }
+  .schedule-note {
+    background: rgba(201,162,39,0.08); border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0; padding: 1rem 1.5rem; margin-top: 2rem;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; color: var(--text-body); line-height: 1.6;
+  }
+  .schedule-note strong { color: var(--gold); }
+
+  /* == INSTRUCTORS == */
+  .instructors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .instructor-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: transform 0.2s, border-color 0.2s;
+  }
+  .instructor-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .instructor-header {
+    height: 200px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .instructor-header::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, rgba(201,162,39,0.03) 0, rgba(201,162,39,0.03) 1px, transparent 1px, transparent 30px);
+  }
+  .instructor-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: var(--navy); display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold);
+    position: relative; z-index: 1; margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .instructor-avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .instructor-rank-badge {
+    background: var(--red); color: white;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 2px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .instructor-body { padding: 1.5rem; }
+  .instructor-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); letter-spacing: 2px; }
+  .instructor-title { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .instructor-bio { font-size: 0.85rem; color: var(--text-body); line-height: 1.7; }
+  .instructor-specialties { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .spec-tag {
+    background: rgba(201,162,39,0.1); border: 1px solid var(--border);
+    color: var(--gray-light); font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;
+    padding: 3px 10px; border-radius: 3px; text-transform: uppercase;
+  }
+
+  /* == GALLERY == */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 180px);
+    gap: 10px;
+  }
+  .gallery-item {
+    border-radius: 8px; overflow: hidden;
+    position: relative; cursor: pointer;
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .gallery-item:hover { transform: scale(1.02); border-color: var(--gold); }
+  .gallery-item.large { grid-column: span 2; grid-row: span 2; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-placeholder {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+  }
+  .gallery-icon { font-size: 2rem; opacity: 0.3; }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,22,40,0.95));
+    padding: 0.75rem 1rem; font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .gallery-note {
+    text-align: center; margin-top: 2rem; font-family: 'Rajdhani', sans-serif;
+    color: var(--gray); font-size: 0.9rem;
+  }
+  .gallery-note a { color: var(--gold); text-decoration: none; }
+
+  /* == ENROLLMENT == */
+  .enrollment-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .enroll-form-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 2rem;
+  }
+  .form-title { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.25rem; }
+  .form-sub { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; letter-spacing: 1px; }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label {
+    display: block; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem;
+    font-weight: 700; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; background: var(--navy-light); border: 1px solid rgba(201,162,39,0.25);
+    border-radius: 4px; color: var(--off-white); padding: 10px 14px;
+    font-family: 'Open Sans', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-row select option { background: var(--navy-light); }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-enroll {
+    width: 100%; background: var(--gold); color: var(--navy);
+    border: none; border-radius: 4px; padding: 14px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 3px;
+    cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
+  }
+  .btn-enroll:hover { background: var(--gold-light); }
+  .success-msg {
+    display: none; background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3);
+    border-radius: 6px; padding: 1.5rem; text-align: center; margin-top: 1rem;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .success-msg h3 { color: #2ecc71; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .success-msg p { color: var(--text-body); font-size: 0.9rem; }
+  .rate-box {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(201,162,39,0.15);
+    border-radius: 10px; padding: 1.3rem; margin-bottom: 1.5rem;
+    color: var(--text-body); font-family: 'Rajdhani', sans-serif;
+  }
+  .rate-box h4 {
+    font-family: 'Bebas Neue', sans-serif; color: var(--gold);
+    font-size: 1.25rem; margin-bottom: 1rem;
+  }
+  .rate-box ul {
+    list-style: none; margin: 0; padding-left: 0;
+  }
+  .rate-box li {
+    margin-bottom: 0.55rem; line-height: 1.7;
+  }
+  .rate-box strong { color: var(--white); display: block; margin: 0.75rem 0 0.35rem; }
+  .rate-note { color: var(--gray); font-size: 0.9rem; margin-top: 1rem; }
+
+  /* == PAYMENT == */
+  .payment-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 2rem;
+  }
+  .payment-title { font-size: 1.8rem; color: var(--gold); margin-bottom: 0.25rem; }
+  .payment-sub { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; letter-spacing: 1px; }
+  .gcash-box {
+    background: linear-gradient(135deg, #005ca8, #0077cc);
+    border-radius: 10px; padding: 2rem; text-align: center; margin-bottom: 1.5rem;
+  }
+  .gcash-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: white; letter-spacing: 3px;
+  }
+  .gcash-num { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #87d3ff; margin-top: 0.5rem; letter-spacing: 2px; }
+  .gcash-name { font-family: 'Open Sans', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.25rem; }
+  .qr-placeholder {
+    width: 160px; height: 160px; margin: 1rem auto;
+    background: white; border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  }
+  .qr-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; width: 120px; height: 120px;
+  }
+  .qr-cell { border-radius: 1px; }
+  .payment-steps { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .payment-step {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; color: var(--text-body); line-height: 1.5;
+  }
+  .step-num {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--gold);
+    color: var(--navy); font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .notify-box {
+    background: rgba(201,162,39,0.08); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1rem 1.2rem; margin-top: 1.5rem;
+  }
+  .notify-title { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .notify-text { font-family: 'Open Sans', sans-serif; font-size: 0.8rem; color: var(--text-body); line-height: 1.6; }
+  .notify-btn {
+    background: var(--gold); color: var(--navy); border: none;
+    border-radius: 4px; padding: 8px 18px; margin-top: 0.75rem;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 1px; cursor: pointer; transition: background 0.2s; width: 100%;
+  }
+  .notify-btn:hover { background: var(--gold-light); }
+
+  /* == LOCATION == */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 2rem;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 14px; padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(201,162,39,0.1); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; }
+  .contact-value { font-size: 0.9rem; color: var(--off-white); }
+  .contact-value a { color: var(--gold); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+  .map-placeholder {
+    background: var(--navy-light); border: 1px solid var(--border);
+    border-radius: 10px; height: 320px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; overflow: hidden; position: relative;
+  }
+  .map-grid {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(201,162,39,0.04) 30px, rgba(201,162,39,0.04) 31px),
+                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(201,162,39,0.04) 30px, rgba(201,162,39,0.04) 31px);
+  }
+  .map-pin { position: relative; z-index: 1; text-align: center; }
+  .map-pin-icon { font-size: 3rem; }
+  .map-pin-label {
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem;
+    color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .map-pin-sub { font-size: 0.8rem; color: var(--gray); font-family: 'Rajdhani', sans-serif; }
+
+  /* == FOOTER == */
+  footer {
+    background: #060e1b; border-top: 1px solid var(--border);
+    padding: 3rem 2rem 1.5rem; text-align: center;
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); letter-spacing: 4px; margin-bottom: 0.25rem; }
+  .footer-tagline { font-family: 'Rajdhani', sans-serif; color: var(--gray); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 2rem; }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; list-style: none; }
+  .footer-links a { color: var(--gray); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-family: 'Rajdhani', sans-serif; color: var(--gray); font-size: 0.75rem; letter-spacing: 1px; }
+  .footer-gsi { color: var(--gold-dim); }
+
+  /* == NOTIFICATION TOAST == */
+  #toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+    background: var(--navy-card); border: 1px solid var(--gold);
+    border-radius: 8px; padding: 1rem 1.5rem; max-width: 300px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    font-family: 'Rajdhani', sans-serif;
+    transform: translateX(400px); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    display: none;
+  }
+  #toast.show { transform: translateX(0); display: block; }
+  .toast-title { font-size: 1rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+  .toast-body { font-size: 0.85rem; color: var(--text-body); }
+
+  /* == MOBILE == */
+  @media (max-width: 800px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--off-white); text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 4px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .about-grid, .enrollment-wrap, .location-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item.large { grid-column: span 2; }
+    .schedule-row { grid-template-columns: 1fr; gap: 4px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .instructors-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    section { padding: 60px 1rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item.large { grid-column: span 1; }
+    .gallery-item.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast">
+  <div class="toast-title">Payment Reminder Sent!</div>
+  <div class="toast-body">Check your GCash for payment confirmation. Admin will verify within 24 hours.</div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#schedule" onclick="closeMobile()">Schedule</a>
+  <a href="#instructors" onclick="closeMobile()">Instructors</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#enroll" onclick="closeMobile()">Enroll Now</a>
+  <a href="#location" onclick="closeMobile()">Location</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div>
+      <span class="alpha">ALPHA</span>
+      <span class="sub">GSI  -  Global Sports Incorporated</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#instructors">Instructors</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('enroll').scrollIntoView({behavior:'smooth'})">Enroll Now</button>
+  <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Global Sports Incorporated - GSI</div>
+  <div class="hero-emblem">
+    <img src="logo.jpg" alt="Alpha Martial Arts Gym Logo" />
+  </div>
+  <h1 class="hero-title">
+    <span class="alpha">ALPHA</span>
+    MARTIAL ARTS GYM
+  </h1>
+  <p class="hero-sub">Forging Warriors · Building Champions</p>
+  <p class="hero-gsi">A Global Sports Incorporated Academy</p>
+  <div class="hero-divider"></div>
+  <p class="hero-tagline">Discipline. Strength. Honor. Train in world-class martial arts disciplines with elite instructors dedicated to your growth.</p>
+  <div class="hero-buttons">
+    <a href="#enroll" class="btn-primary">Enroll Now</a>
+    <a href="#schedule" class="btn-outline">View Schedule</a>
+  </div>
+  <div class="scroll-hint">scroll down</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">About <span>Alpha</span></h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Alpha Martial Arts Gym is a premier combat sports institution under the umbrella of <strong style="color:var(--gold)">Global Sports Incorporated (GSI)</strong> - a network dedicated to developing world-class athletes and disciplined individuals through the art of martial combat.</p>
+        <p>We offer a wide spectrum of disciplines, from traditional Filipino arts like Arnis to the international sport of Muay Thai, tactical combat, knife fighting, boxing, and kickboxing. Every class is designed to strengthen the body, sharpen the mind, and build unshakeable character.</p>
+        <p>Our structured ranking system with belting ceremonies every 3 months ensures every student has clear milestones to achieve. Whether you're a beginner, a parent enrolling your child, or a competitor aiming for the podium - Alpha is where champions are forged.</p>
+        <div class="about-stats">
+          <div class="stat-box"><span class="stat-num">6</span><span class="stat-label">Disciplines</span></div>
+          <div class="stat-box"><span class="stat-num">3mo</span><span class="stat-label">Belt Intervals</span></div>
+          <div class="stat-box"><span class="stat-num">Kids</span><span class="stat-label">Program</span></div>
+          <div class="stat-box"><span class="stat-num">GSI</span><span class="stat-label">Affiliated</span></div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-title">Our Disciplines</div>
+        <div class="discipline-pill">Boxing</div>
+        <div class="discipline-pill">Arnis (Filipino Martial Arts)</div>
+        <div class="discipline-pill">Kickboxing</div>
+        <div class="discipline-pill">Muay Thai</div>
+        <div class="discipline-pill">Knife Fighting</div>
+        <div class="discipline-pill">Tactical Combat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule" class="alt-bg">
+  <div class="section-inner">
+    <p class="section-label">Training Hours</p>
+    <h2 class="section-title">Class <span>Schedule</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="schedule-day">Weekly Class Schedule</div>
+    <div class="schedule-grid">
+      <div class="schedule-row">
+        <span class="sched-time">Monday · 6:30 AM – 8:30 PM</span>
+        <span class="sched-class">Boxing Training — Technical striking &amp; conditioning</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-time">Tuesday · 6:30 AM – 8:30 PM</span>
+        <span class="sched-class">Kinetic Kickboxing — Dynamic striking &amp; footwork</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-time">Wednesday · 6:30 AM – 8:30 PM</span>
+        <span class="sched-class">Boxing Training — Technical striking &amp; conditioning</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-time">Thursday · 6:30 AM – 8:30 PM</span>
+        <span class="sched-class">Kinetic Kickboxing — Dynamic striking &amp; footwork</span>
+      </div>
+      <div class="schedule-row">
+        <span class="sched-time">Friday · 6:30 AM – 8:30 PM</span>
+        <span class="sched-class">FMA-UKF / Strength — Urban knife fighting &amp; plyometrics</span>
+      </div>
+    </div>
+
+    <div class="schedule-note">
+      <strong>Belting & Rank Promotion</strong> - Conducted every 3 months for all active students. Students are evaluated on technique, discipline, and attendance. Belting ceremonies are formal events celebrated with the whole Alpha community.<br><br>
+      <strong>Muay Thai &amp; Tactical Combat / Knife Fighting</strong> - Schedule varies by instructor. Inquire directly with your assigned master.
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section id="instructors">
+  <div class="section-inner">
+    <p class="section-label">Our Team</p>
+    <h2 class="section-title">Head <span>Instructors</span></h2>
+    <div class="section-divider"></div>
+    <div class="instructors-grid">
+
+    
+
+      <div class="instructor-card">
+        <div class="instructor-header">
+          <div class="instructor-avatar"><img src="master chris.png" alt="Master Chris Garcia" /></div>
+          <div class="instructor-rank-badge">Master Instructor</div>
+        </div>
+        <div class="instructor-body">
+          <div class="instructor-name">Master Chris Garcia</div>
+          <div class="instructor-title">Kickboxing &amp; Muay Thai Lead</div>
+          <div class="instructor-bio">Kickboxing and Muay Thai trainer with extensive competitive and coaching experience. Specializes in striking, clinch work, and fighter conditioning.</div>
+          <div class="instructor-specialties">
+            <span class="spec-tag">Muay Thai</span>
+            <span class="spec-tag">Kickboxing</span>
+            <span class="spec-tag">Conditioning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="instructor-card">
+        <div class="instructor-header">
+          <div class="instructor-avatar"><img src="master ely.png" alt="Master Ely Gamboa" /></div>
+          <div class="instructor-rank-badge">Master Instructor</div>
+        </div>
+        <div class="instructor-body">
+          <div class="instructor-name">Master Ely Gamboa</div>
+          <div class="instructor-title">Eskrima, Arnis &amp; Knife Fighting Lead</div>
+          <div class="instructor-bio">Elite FMA Eskrima and Arnis practitioner, certified in UKF (Urban Knife Fighting). Expert in close-quarters blade work, disarms, and traditional Filipino weapons.</div>
+          <div class="instructor-specialties">
+            <span class="spec-tag">Arnis</span>
+            <span class="spec-tag">Eskrima</span>
+            <span class="spec-tag">Knife Fighting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="instructor-card">
+        <div class="instructor-header">
+          <div class="instructor-avatar"><img src="master brix.png" alt="Master Brix Ambray" /></div>
+          <div class="instructor-rank-badge">Master Instructor</div>
+        </div>
+        <div class="instructor-body">
+          <div class="instructor-name">Master Brix Ambray</div>
+          <div class="instructor-title">Boxing Lead</div>
+          <div class="instructor-bio">Elite Boxing Trainer with pro-level experience, focusing on fundamentals, footwork, and pad work to develop well-rounded boxers.</div>
+          <div class="instructor-specialties">
+            <span class="spec-tag">Boxing</span>
+            <span class="spec-tag">Padwork</span>
+            <span class="spec-tag">Strength &amp; Conditioning</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:1.5rem; font-family:'Rajdhani',sans-serif; color:var(--gray); font-size:0.85rem; text-align:center;">
+      * Please provide your instructors' actual names and photos to update this section.
+    </p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="alt-bg">
+  <div class="section-inner">
+    <p class="section-label">Photos & Events</p>
+    <h2 class="section-title">Gallery &amp; <span>Highlights</span></h2>
+    <div class="section-divider"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="training.jpeg" alt="Competition Training" />
+        <div class="gallery-caption">Competition Training — Saturdays</div>
+      </div>
+      <div class="gallery-item">
+        <img src="belting.png" alt="Belting Ceremony" />
+        <div class="gallery-caption">Belting Ceremony</div>
+      </div>
+      <div class="gallery-item">
+        <img src="arnis.png" alt="Arnis Class" />
+        <div class="gallery-caption">Arnis Class</div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="competition.jpeg" alt="Competition Victory" />
+        <div class="gallery-caption">Alpha Champions</div>
+      </div>
+      <div class="gallery-item">
+        <img src="muaythai.png" alt="Muay Thai" />
+        <div class="gallery-caption">Muay Thai</div>
+      </div>
+      <div class="gallery-item">
+        <img src="tactical.png" alt="Tactical Combat" />
+        <div class="gallery-caption">Tactical Combat</div>
+      </div>
+    </div>
+    <p class="gallery-note">
+      Follow us on Facebook for real-time photos and event updates:
+      <a href="#" target="_blank">facebook.com/AlphaMartialArtsGym</a>
+      &nbsp;|&nbsp;
+      <a href="#" target="_blank">Alpha Martial Arts Gym Group Page</a>
+    </p>
+  </div>
+</section>
+
+<!-- ENROLLMENT + PAYMENT -->
+<section id="enroll">
+  <div class="section-inner">
+    <p class="section-label">Join the Fight</p>
+    <h2 class="section-title">Enrollment &amp; <span>Payment</span></h2>
+    <div class="section-divider"></div>
+    <div class="enrollment-wrap">
+
+      <!-- FORM -->
+      <div class="enroll-form-card">
+        <h3 class="form-title">ENROLLMENT FORM</h3>
+        <p class="form-sub">Fill out the form below to register. Admin will contact you within 24 hours.</p>
+        <div id="enrollFormWrap">
+          <div class="form-grid">
+            <div class="form-row"><label>First Name</label><input type="text" placeholder="Juan" id="fname"/></div>
+            <div class="form-row"><label>Last Name</label><input type="text" placeholder="Dela Cruz" id="lname"/></div>
+          </div>
+          <div class="form-row"><label>Date of Birth</label><input type="date" id="dob"/></div>
+          <div class="form-row"><label>Gender</label>
+            <select id="gender">
+              <option value="">Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row"><label>Contact Number</label><input type="tel" placeholder="09XX-XXX-XXXX" id="contact"/></div>
+          <div class="form-row"><label>Email Address</label><input type="email" placeholder="you@email.com" id="email"/></div>
+          <div class="form-row">
+            <label>Program / Discipline</label>
+            <select id="program">
+              <option value="">Choose your program</option>
+              <optgroup label="Adult Programs">
+                <option>Boxing</option>
+                <option>Arnis (Filipino Martial Arts)</option>
+                <option>Kickboxing</option>
+                <option>Muay Thai</option>
+                <option>Knife Fighting</option>
+                <option>Tactical Combat</option>
+                <option>All Disciplines (Full Program)</option>
+              </optgroup>
+              <optgroup label="Kids Program (Ages 5-15)">
+                <option>Kids Martial Arts Program</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Experience Level</label>
+            <select id="level">
+              <option value="">Select level</option>
+              <option>Complete Beginner</option>
+              <option>Some Experience</option>
+              <option>Intermediate</option>
+              <option>Advanced / Competitor</option>
+            </select>
+          </div>
+          <div class="form-row"><label>Medical Conditions (if any)</label><textarea placeholder="List any medical conditions or injuries we should know about..." id="medical"></textarea></div>
+          <div class="form-row">
+            <label>Emergency Contact Name &amp; Number</label>
+            <input type="text" placeholder="e.g. Maria Dela Cruz - 09XX-XXX-XXXX" id="emergency"/>
+          </div>
+          <button class="btn-enroll" onclick="submitEnroll()">SUBMIT ENROLLMENT →</button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          <h3>Enrollment Submitted!</h3>
+          <p>Thank you! Our admin team will review your application and contact you within 24 hours to confirm your slot and payment details. See you at the gym!</p>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="payment-card">
+        <h3 class="payment-title">PAYMENT METHOD</h3>
+        <p class="payment-sub">Send payment via GCash using the details below.</p>
+        <div class="rate-box">
+          <h4>Training Rates for Members</h4>
+          <strong>Boxing &amp; Kickboxing</strong>
+          <ul>
+            <li>Per Month: 1,500</li>
+            <li>Per Session: 300</li>
+            <li>Package Deal: 3,000 (Valid for 10 days)</li>
+          </ul>
+          <strong>Arnis / Eskrima (FMA)</strong>
+          <ul>
+            <li>Per Session: 100</li>
+          </ul>
+          <p class="rate-note">Note: The "3,000 good for 10 days" package is an excellent way to maintain consistency if you're looking to level up your Boxing or Kickboxing skills quickly!</p>
+        </div>
+
+        <div class="gcash-box">
+          <div class="gcash-logo">GCASH</div>
+          <div class="gcash-num">09XX-XXX-XXXX</div>
+          <div class="gcash-name">Alpha Martial Arts Gym / [Account Name]</div>
+          <div style="margin-top:1rem;font-family:'Rajdhani',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:2px;">SCAN QR CODE BELOW</div>
+          <div class="qr-placeholder">
+            <div style="width:120px;height:120px;position:relative;">
+              <!-- Simulated QR pattern -->
+              <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="120" fill="white"/>
+                <!-- corners -->
+                <rect x="8" y="8" width="30" height="30" fill="black"/>
+                <rect x="11" y="11" width="24" height="24" fill="white"/>
+                <rect x="14" y="14" width="18" height="18" fill="black"/>
+                <rect x="82" y="8" width="30" height="30" fill="black"/>
+                <rect x="85" y="11" width="24" height="24" fill="white"/>
+                <rect x="88" y="14" width="18" height="18" fill="black"/>
+                <rect x="8" y="82" width="30" height="30" fill="black"/>
+                <rect x="11" y="85" width="24" height="24" fill="white"/>
+                <rect x="14" y="88" width="18" height="18" fill="black"/>
+                <!-- center data pattern -->
+                <rect x="48" y="8" width="6" height="6" fill="black"/>
+                <rect x="56" y="8" width="4" height="4" fill="black"/>
+                <rect x="64" y="10" width="6" height="4" fill="black"/>
+                <rect x="48" y="20" width="4" height="4" fill="black"/>
+                <rect x="56" y="18" width="8" height="4" fill="black"/>
+                <rect x="68" y="16" width="4" height="6" fill="black"/>
+                <rect x="48" y="48" width="4" height="4" fill="black"/>
+                <rect x="54" y="44" width="6" height="4" fill="black"/>
+                <rect x="62" y="48" width="4" height="6" fill="black"/>
+                <rect x="68" y="44" width="8" height="4" fill="black"/>
+                <rect x="78" y="48" width="4" height="4" fill="black"/>
+                <rect x="48" y="56" width="8" height="4" fill="black"/>
+                <rect x="58" y="58" width="4" height="6" fill="black"/>
+                <rect x="66" y="56" width="4" height="4" fill="black"/>
+                <rect x="72" y="58" width="8" height="4" fill="black"/>
+                <rect x="8" y="48" width="4" height="4" fill="black"/>
+                <rect x="14" y="44" width="6" height="4" fill="black"/>
+                <rect x="22" y="48" width="4" height="8" fill="black"/>
+                <rect x="28" y="44" width="6" height="4" fill="black"/>
+                <rect x="8" y="58" width="8" height="4" fill="black"/>
+                <rect x="18" y="56" width="4" height="6" fill="black"/>
+                <rect x="26" y="58" width="8" height="4" fill="black"/>
+                <rect x="48" y="68" width="4" height="6" fill="black"/>
+                <rect x="54" y="72" width="8" height="4" fill="black"/>
+                <rect x="64" y="68" width="4" height="4" fill="black"/>
+                <rect x="70" y="72" width="6" height="6" fill="black"/>
+                <rect x="78" y="68" width="4" height="8" fill="black"/>
+                <rect x="84" y="72" width="6" height="4" fill="black"/>
+                <rect x="96" y="68" width="4" height="6" fill="black"/>
+                <rect x="102" y="72" width="8" height="4" fill="black"/>
+              </svg>
+            </div>
+            <div style="font-family:'Rajdhani',sans-serif;font-size:0.6rem;color:#888;text-align:center;margin-top:4px;">Replace with your actual GCash QR</div>
+          </div>
+        </div>
+
+        <ul class="payment-steps">
+          <li class="payment-step">
+            <div class="step-num">1</div>
+            <div>Open your <strong style="color:var(--gold)">GCash app</strong> and tap <em>Send Money</em> or <em>Scan QR</em>.</div>
+          </li>
+          <li class="payment-step">
+            <div class="step-num">2</div>
+            <div>Enter the GCash number or scan the QR code above. Enter the enrollment fee amount.</div>
+          </li>
+          <li class="payment-step">
+            <div class="step-num">3</div>
+            <div>In the <strong style="color:var(--gold)">message/note</strong> field, write your <em>Full Name + Program Enrolled</em>.</div>
+          </li>
+          <li class="payment-step">
+            <div class="step-num">4</div>
+            <div>Take a screenshot of the <strong style="color:var(--gold)">GCash confirmation</strong> and send it to our Facebook page or group chat.</div>
+          </li>
+          <li class="payment-step">
+            <div class="step-num">5</div>
+            <div>Click the button below to send yourself a <strong style="color:var(--gold)">payment reminder notification</strong>.</div>
+          </li>
+        </ul>
+
+        <div class="notify-box">
+          <div class="notify-title">Payment Notification</div>
+          <div class="notify-text">Click below to receive a reminder on this browser and confirm your payment step. Admin will verify your screenshot within 24 hours and activate your account.</div>
+          <button class="notify-btn" onclick="sendNotification()">Send Me a Payment Reminder</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="alt-bg">
+  <div class="section-inner">
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title">Location &amp; <span>Contact</span></h2>
+    <div class="section-divider"></div>
+    <div class="location-grid">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">JP, 524 Cabaguio Ave<br>Davao City, 8000 Davao del Sur<br>Philippines</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone / GCash</div>
+            <div class="contact-value"><a href="tel:+63xxxxxxxxxx">09XX-XXX-XXXX</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div>
+            <div class="contact-label">Facebook Page</div>
+            <div class="contact-value"><a href="https://www.facebook.com/profile.php?id=100053336786966" target="_blank">Alpha Martial Arts Gym</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:eliezarg26@gmail.com">eliezarg26@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="contact-label">Operating Hours</div>
+            <div class="contact-value">Mon-Fri: 10:00 AM - 8:00 PM<br>Saturday: 8:00 AM - 5:00 PM<br>Sunday: Closed</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🏅</div>
+          <div>
+            <div class="contact-label">Affiliation</div>
+            <div class="contact-value">Amara Global Sports Inc.<br><span style="color:var(--gray);font-size:0.82rem;">Nationally recognized combat sports body</span></div>
+          </div>
+        </div>
+      </div>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2727887404817!2d125.61857147365406!3d7.094346216269335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f96d005463ef51%3A0x56969d3dba557364!2sAlpha%20Martial%20Arts%20Gym!5e0!3m2!1sen!2sph!4v1780378269928!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">ALPHA MARTIAL ARTS GYM</div>
+    <div class="footer-tagline">Discipline · Strength · Honor · Excellence</div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#instructors">Instructors</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#enroll">Enroll</a></li>
+      <li><a href="#location">Contact</a></li>
+    </ul>
+    <p class="footer-copy">
+      © 2025 Alpha Martial Arts Gym. All rights reserved.<br>
+      <span class="footer-gsi">A Global Sports Incorporated (GSI) Affiliated Academy</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+function submitEnroll() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  const program = document.getElementById('program').value;
+
+  if (!fname || !lname || !contact || !program) {
+    alert('Please fill in at least your name, contact number, and chosen program.');
+    return;
+  }
+
+  document.getElementById('enrollFormWrap').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  showToast('Enrollment Submitted!', `Welcome, ${fname}! Admin will contact you at ${contact} within 24 hours.`);
+}
+
+function sendNotification() {
+  if ('Notification' in window && Notification.permission !== 'denied') {
+    Notification.requestPermission().then(perm => {
+      if (perm === 'granted') {
+        new Notification('Alpha Martial Arts Gym  -  Payment Reminder', {
+          body: 'Please send your GCash payment to 09XX-XXX-XXXX and message your screenshot to our Facebook page.',
+          icon: ''
+        });
+      }
+    });
+  }
+  showToast('Payment Reminder Sent!', 'Check your GCash and send your screenshot to our Facebook page. Admin verifies within 24 hours.');
+}
+
+function showToast(title, body) {
+  const t = document.getElementById('toast');
+  t.querySelector('.toast-title').textContent = title;
+  t.querySelector('.toast-body').textContent = body;
+  t.style.display = 'block';
+  setTimeout(() => t.classList.add('show'), 50);
+  setTimeout(() => {
+    t.classList.remove('show');
+    setTimeout(() => t.style.display = 'none', 400);
+  }, 5000);
+}
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      closeMobile();
+    }
+  });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
